@@ -1,13 +1,13 @@
 import React from "react";
+// import "./Header.scss";
 
- 
+// Home Icon
 const HomeIcon = () => (
   <svg
     width="16"
     height="16"
     viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     className="home-icon"
   >
     <path
@@ -19,14 +19,14 @@ const HomeIcon = () => (
     />
   </svg>
 );
- 
+
+// Chevron Icon
 const ChevronIcon = () => (
   <svg
     width="12"
     height="12"
     viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     className="chevron-icon"
   >
     <path
@@ -38,7 +38,8 @@ const ChevronIcon = () => (
     />
   </svg>
 );
- 
+
+// Main Header Component
 const Header = ({
   breadcrumbs = ["Campaign"],
   userName = "John Doe",
@@ -49,11 +50,13 @@ const Header = ({
   return (
     <div className="header-wrapper">
       <header className="app-header">
+
         {/* Left: Breadcrumb */}
         <nav className="breadcrumb" aria-label="breadcrumb">
           <span className="breadcrumb-home" title="Home">
             <HomeIcon />
           </span>
+
           {breadcrumbs.map((crumb, index) => (
             <React.Fragment key={index}>
               <ChevronIcon />
@@ -67,21 +70,23 @@ const Header = ({
             </React.Fragment>
           ))}
         </nav>
- 
+
         {/* Right: User Info */}
         <div className="user-info">
           <div className="user-text">
             <span className="user-name">{userName}</span>
             <span className="user-role">{userRole}</span>
           </div>
+
           <div className="avatar-wrapper">
             <img src={userAvatar} alt={userName} className="user-avatar" />
             {isOnline && <span className="online-dot" />}
           </div>
         </div>
+
       </header>
     </div>
   );
 };
- 
+
 export default Header;
