@@ -1,0 +1,13 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+.theme-btn {
+  @include button-style;
+  background-color: $primary-color;
+  color: white;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-2px);
+  }
+}

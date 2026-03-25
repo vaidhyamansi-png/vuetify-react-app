@@ -1,0 +1,374 @@
+// ─── Variables ───────────────────────────────────────────────
+
+// Light theme
+$light-bg:            #ffffff;
+$light-border:        #e8e8f0;
+$light-border-inner:  #f0f0f8;
+$light-brand-color:   #1a1a2e;
+$light-icon-bg:       #f4f4fb;
+$light-muted:         #9999b8;
+$light-muted-2:       #6b6b8f;
+$light-profile-bg:    #f8f8ff;
+$light-toggle-bg:     #f4f4fb;
+$light-toggle-active: #ffffff;
+$light-email-label:   #b0b0cc;
+$light-shadow:        rgba(99, 102, 241, 0.06);
+$light-avatar-border: #e8e8ff;
+$light-online-border: #f8f8ff;
+
+// Dark theme
+$dark-bg:             #1c1c2e;
+$dark-border:         #2a2a3e;
+$dark-brand-color:    #e8e8ff;
+$dark-icon-bg:        #2a2a3e;
+$dark-muted:          #6b6b8f;
+$dark-muted-2:        #9999c0;
+$dark-profile-bg:     #22223a;
+$dark-toggle-bg:      #22223a;
+$dark-toggle-active:  #3a3a5c;
+$dark-email-label:    #5a5a7a;
+$dark-email-value:    #8888aa;
+$dark-shadow:         rgba(0, 0, 0, 0.3);
+$dark-avatar-border:  #3a3a5c;
+$dark-online-border:  #22223a;
+
+// Shared
+$primary:             #6366f1;
+$primary-light:       #818cf8;
+$primary-shadow:      rgba(99, 102, 241, 0.35);
+$online-green:        #22c55e;
+$font-family:         'DM Sans', 'Segoe UI', sans-serif;
+
+// ─── Mixins ──────────────────────────────────────────────────
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin transition($props...) {
+  transition: $props;
+}
+
+// ─── Sidebar Root ────────────────────────────────────────────
+
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family;
+  position: relative;
+  background-color: $light-bg;
+  border-right: 1px solid $light-border;
+  box-shadow: 4px 0 20px $light-shadow;
+  @include transition(background-color 0.3s ease, border-color 0.3s ease);
+
+  &.dark {
+    background-color: $dark-bg;
+    border-right: 1px solid $dark-border;
+    box-shadow: 4px 0 20px $dark-shadow;
+  }
+
+  // ─── Header ─────────────────────────────────────────────
+
+  &__header {
+    @include flex-center;
+    justify-content: space-between;
+    padding: 20px 16px 16px 16px;
+    border-bottom: 1px solid $light-border-inner;
+
+    .dark & { border-bottom: 1px solid $dark-border; }
+  }
+
+  &__header-left {
+    @include flex-center;
+    gap: 10px;
+  }
+
+  &__brand-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: $light-brand-color;
+
+    .dark & { color: $dark-brand-color; }
+  }
+
+  &__collapse-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    @include flex-center;
+    padding: 4px;
+    border-radius: 6px;
+    color: $light-muted;
+    @include transition(color 0.2s, background 0.2s);
+
+    .dark & { color: $dark-muted; }
+
+    &:hover {
+      background: $light-icon-bg;
+      .dark & { background: $dark-icon-bg; }
+    }
+  }
+
+  // ─── Nav ────────────────────────────────────────────────
+
+  &__nav {
+    flex: 1;
+    padding: 16px 12px;
+    overflow-y: auto;
+  }
+
+  &__nav-item {
+    @include flex-center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: $light-muted-2;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 4px;
+    @include transition(all 0.2s ease);
+
+    .dark & { color: $dark-muted-2; }
+
+    &:hover:not(.active) {
+      background: $light-icon-bg;
+      .dark & { background: $dark-icon-bg; }
+    }
+
+    &.active {
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+      box-shadow: 0 4px 12px $primary-shadow;
+    }
+  }
+
+  &__nav-icon {
+    @include flex-center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: $light-icon-bg;
+    @include transition(background 0.2s);
+
+    .dark & { background: $dark-icon-bg; }
+
+    .active & { background: rgba(255, 255, 255, 0.2); }
+  }
+
+  // ─── Footer ─────────────────────────────────────────────
+
+  &__footer {
+    padding: 12px 14px 16px;
+    border-top: 1px solid $light-border-inner;
+
+    .dark & { border-top: 1px solid $dark-border; }
+  }
+
+  // ─── Profile ────────────────────────────────────────────
+
+  &__profile-row {
+    @include flex-center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 8px 6px;
+    border-radius: 10px;
+    background: $light-profile-bg;
+
+    .dark & { background: $dark-profile-bg; }
+  }
+
+  &__avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, $primary);
+    @include flex-center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    overflow: hidden;
+    border: 2px solid $light-avatar-border;
+
+    .dark & { border-color: $dark-avatar-border; }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__online-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: $online-green;
+    border: 2px solid $light-online-border;
+
+    .dark & { border-color: $dark-online-border; }
+  }
+
+  &__profile-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__profile-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $light-brand-color;
+
+    .dark & { color: $dark-brand-color; }
+  }
+
+  &__profile-role {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: $light-muted;
+
+    .dark & { color: $dark-muted; }
+  }
+
+  &__logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    @include flex-center;
+    padding: 6px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    color: $light-muted;
+    @include transition(color 0.2s, background 0.2s);
+
+    .dark & { color: $dark-muted; }
+
+    &:hover {
+      background: $light-icon-bg;
+      color: $light-muted-2;
+
+      .dark & {
+        background: $dark-icon-bg;
+        color: $dark-brand-color;
+      }
+    }
+  }
+
+  // ─── Email ──────────────────────────────────────────────
+
+  &__email-section {
+    padding: 4px 6px 10px;
+  }
+
+  &__email-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+    color: $light-email-label;
+
+    .dark & { color: $dark-email-label; }
+  }
+
+  &__email-value {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: $light-muted-2;
+
+    .dark & { color: $dark-email-value; }
+  }
+
+  // ─── Theme Toggle ───────────────────────────────────────
+
+  &__theme-toggle {
+    @include flex-center;
+    background: $light-toggle-bg;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 2px;
+    margin-top: 2px;
+
+    .dark & { background: $dark-toggle-bg; }
+  }
+
+  &__theme-btn {
+    flex: 1;
+    @include flex-center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    font-size: 12.5px;
+    font-weight: 500;
+    background: transparent;
+    box-shadow: none;
+    color: $light-muted;
+    @include transition(all 0.2s ease);
+
+    .dark & { color: $dark-email-label; }
+
+    &.active {
+      font-weight: 600;
+      background: $light-toggle-active;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12);
+      color: $light-brand-color;
+
+      .dark & {
+        background: $dark-toggle-active;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        color: $dark-brand-color;
+      }
+    }
+  }
+}
+
+// ─── Responsive ──────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    min-height: 100vh;
+    border-right: none;
+    border-bottom: 1px solid $light-border;
+
+    &.dark {
+      border-bottom: 1px solid $dark-border;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@use './variables';
+@use './mixins';
+@use './buttons';
+@use './sidebar';
+@use './custom';
+
+body {
+  font-family: Arial, sans-serif;
+  color: variables.$text-color;
+}
