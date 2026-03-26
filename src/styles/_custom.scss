@@ -1,3 +1,614 @@
-.lorem{
-    background-color: red;
+// Variables
+$primary-blue: #4f46e5;
+$light-blue-bg: #e8eef9;
+$white: #ffffff;
+$text-dark: #1f2937;
+$text-light: #6b7280;
+$border-color: #d1d5db;
+
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-2xl: 2.5rem;
+$spacing-3xl: 3rem;
+
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$radius-md: 0.5rem;
+$transition-fast: 150ms ease-in-out;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin media-sm {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+.campaign-container {
+  @include flex-column;
+  min-height: 100vh;
+  background-color: $light-blue-bg;
+  padding: $spacing-lg;
+
+  @include media-sm {
+    padding: $spacing-xl;
+  }
+
+  @include media-md {
+    padding: $spacing-3xl $spacing-2xl;
+  }
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: #fff;
+        padding: 1.5rem;
+        margin-top: 21px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.campaign-header {
+  @include flex-between;
+  margin-bottom: $spacing-3xl;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+
+  @include media-md {
+    flex-wrap: nowrap;
+  }
+}
+
+.campaign-filter {
+//   @include flex-between;
+  gap: $spacing-md;
+  flex: 1;
+  width: 100%;
+  max-width: 189px;
+  display: flex;
+
+  @include media-md {
+    width: auto;
+  }
+}
+
+.dropdown-select {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  background-color: $white;
+  color: $text-dark;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  cursor: pointer;
+  min-width: 100px;
+  transition: border-color $transition-fast;
+
+  &:hover {
+    border-color: $primary-blue;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-blue;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+}
+
+.search-input {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  background-color: $white;
+  color: $text-dark;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  flex: 1;
+  transition: border-color $transition-fast;
+
+  &::placeholder {
+    color: $text-light;
+  }
+
+  &:hover {
+    border-color: $primary-blue;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary-blue;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  }
+}
+
+.campaign-content {
+  @include flex-column-center;
+  flex: 1;
+  gap: $spacing-2xl;
+  padding: $spacing-2xl 0;
+}
+
+.illustration-wrapper {
+  @include flex-center;
+  width: 100%;
+  max-width: 500px;
+
+  @include media-md {
+    max-width: 600px;
+  }
+}
+
+.illustration-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.button-wrapper {
+  @include flex-center;
+  margin-top: $spacing-lg;
+}
+
+.campaign-button {
+  padding: $spacing-sm $spacing-2xl;
+  background-color: $primary-blue;
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: darken($primary-blue, 10%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+  }
+
+  @include media-sm {
+    padding: $spacing-md $spacing-3xl;
+    font-size: $font-size-lg;
+  }
+}
+
+
+.main_content_wrap{
+    margin-left: 265px;
+}
+
+.input_img_wrap{
+    position: relative;
+    .search_icon_outer_wrap{
+        position: absolute;
+        left: 16px;
+        top: 12px;
+    }
+    .search-input{
+        padding-left: 40px;
+    }
+}
+
+
+
+// modal css here
+
+// ============================================
+// WorkflowModal SCSS
+// ============================================
+
+// ---------- Variables ----------
+$primary:        #4361EE;
+$primary-light:  #f5f7ff;
+$primary-border: #4361EE;
+
+$success-bg:     #e8f5e9;
+$success-text:   #2e7d32;
+
+$border-default: #e8eaed;
+$bg-white:       #ffffff;
+$bg-overlay:     rgba(0, 0, 0, 0.45);
+$bg-close-btn:   #f1f3f5;
+$bg-cancel:      #f1f3f5;
+
+$text-heading:   #1a1a2e;
+$text-sub:       #888888;
+$text-tag:       #555555;
+$text-cancel:    #555555;
+
+$radius-modal:   12px;
+$radius-card:    10px;
+$radius-btn:     6px;
+$radius-badge:   20px;
+
+$shadow-modal:   0 20px 60px rgba(0, 0, 0, 0.18);
+
+$transition-fast: all 0.15s ease;
+
+// ---------- Overlay ----------
+.wf-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+  animation: overlayFadeIn 0.2s ease;
+
+  @keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+
+// ============================================
+// WorkflowModal SCSS
+// ============================================
+
+// ---------- Variables ----------
+$primary:        #4361EE;
+$primary-light:  #f5f7ff;
+$primary-border: #4361EE;
+
+$success-bg:     #e8f5e9;
+$success-text:   #2e7d32;
+
+$border-default: #e8eaed;
+$bg-white:       #ffffff;
+$bg-overlay:     rgba(0, 0, 0, 0.45);
+$bg-close-btn:   #f1f3f5;
+$bg-cancel:      #f1f3f5;
+
+$text-heading:   #1a1a2e;
+$text-sub:       #888888;
+$text-tag:       #555555;
+$text-cancel:    #555555;
+
+$radius-modal:   12px;
+$radius-card:    10px;
+$radius-btn:     6px;
+$radius-badge:   20px;
+
+$shadow-modal:   0 20px 60px rgba(0, 0, 0, 0.18);
+
+$transition-fast: all 0.15s ease;
+
+// ---------- Campaign Button ----------
+.campaign-button {
+  padding: 10px 22px;
+  background: $primary;
+  color: #fff;
+  border: none;
+  border-radius: $radius-btn;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover {
+    background: #2f4dd4;
+  }
+
+  &:active {
+    background: #2440c0;
+    transform: scale(0.98);
+  }
+}
+
+// ---------- Overlay ----------
+.wf-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg-overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  box-sizing: border-box;
+  animation: overlayFadeIn 0.2s ease;
+
+  @keyframes overlayFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}
+
+// ---------- Modal ----------
+.wf-modal {
+  background: $bg-white;
+  border-radius: $radius-modal;
+  padding: 28px 28px 24px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: $shadow-modal;
+  position: relative;
+  box-sizing: border-box;
+  animation: modalSlideUp 0.22s ease;
+
+  @keyframes modalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: $bg-close-btn;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #666;
+    line-height: 1;
+    transition: $transition-fast;
+
+    &:hover {
+      background: #e2e5e8;
+      color: $text-heading;
+    }
+  }
+
+  &__title {
+    margin: 0 0 4px;
+    font-size: 17px;
+    font-weight: 700;
+    color: $text-heading;
+  }
+
+  &__subtitle {
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: $text-sub;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+}
+
+// ---------- Option Card ----------
+.wf-option {
+  border: 2px solid $border-default;
+  border-radius: $radius-card;
+  padding: 16px;
+  cursor: pointer;
+  background: $bg-white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: $transition-fast;
+
+  &:hover {
+    border-color: #a0b4f8;
+    background: #f8f9ff;
+  }
+
+  &--selected {
+    border-color: $primary-border;
+    background: $primary-light;
+  }
+
+  &__left {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1;
+  }
+
+  &__radio {
+    margin-top: 2px;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: $bg-white;
+    box-sizing: border-box;
+    transition: $transition-fast;
+
+    &--checked {
+      border: 5px solid $primary;
+    }
+  }
+
+  &__body {}
+
+  &__header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 14px;
+    color: $text-heading;
+  }
+
+  &__badge {
+    background: $success-bg;
+    color: $success-text;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: $radius-badge;
+  }
+
+  &__desc {
+    margin: 0 0 8px;
+    font-size: 12px;
+    color: $text-sub;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  &__tag {
+    font-size: 12px;
+    color: $text-tag;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #aaa;
+      flex-shrink: 0;
+    }
+  }
+
+  &__illustration {
+    flex-shrink: 0;
+  }
+}
+
+// ---------- Footer Buttons ----------
+.wf-btn {
+  padding: 9px 22px;
+  border: none;
+  border-radius: $radius-btn;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &--cancel {
+    background: $bg-cancel;
+    color: $text-cancel;
+
+    &:hover {
+      background: #e2e5e8;
+    }
+  }
+
+  &--primary {
+    background: $primary;
+    color: #fff;
+
+    &:hover {
+      background: #2f4dd4;
+    }
+  }
+}
+
+// ---------- Responsive ----------
+@media (max-width: 520px) {
+  .wf-modal {
+    padding: 22px 18px 18px;
+
+    &__title {
+      font-size: 15px;
+      padding-right: 28px;
+    }
+  }
+
+  .wf-option {
+    padding: 12px;
+    flex-wrap: wrap;
+
+    &__illustration {
+      display: none;
+    }
+
+    &__tags {
+      gap: 10px;
+    }
+  }
+
+  .wf-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+
+.campaign-button {
+  padding: 10px 22px;
+  background: $primary;
+  color: #fff;
+  border: none;
+  border-radius: $radius-btn;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition-fast;
+
+  &:hover { background: #2f4dd4; }
+  &:active { background: #2440c0; transform: scale(0.98); }
+}
+
