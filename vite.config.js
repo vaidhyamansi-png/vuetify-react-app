@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Advance-Campaign/',  // ← tumhara repo name
+  base: '/',  // ← tumhara repo name
 })
