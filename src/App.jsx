@@ -16,7 +16,7 @@ function App() {
       <div className='main_content_wrap'>
         <Routes>
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/Advance-Campaign" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
