@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './assets/css/main.css' 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/Advance-Campaign/">
+  <BrowserRouter >
     <App />
   </BrowserRouter>
 )
